@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { CrudAutoma, Ricerca } from './automa';
 import { Automabile } from './automabile';
-import { AddEvent, AnnullaEvent, RicercaEvent } from './state';
+import { AddEvent, AnnullaEvent, ConfermaEvent, ModificaEvent, RicercaEvent, RimuoviEvent, SelezionaEvent } from './state';
 
 @Component({
   selector: 'app-root',
@@ -26,31 +26,31 @@ export class AppComponent implements Automabile {
   cercaPerCodice: string;
 
   ricerca() {
-    this.entraStatoRicerca();
+    this.automa.stato.next(new RicercaEvent());
   }
 
   nuova() {
-    this.entraStatoAggiungi();
+    this.automa.stato.next(new AddEvent());
   }
 
   conferma() {
-    this.entraStatoVisualizza();
+    this.automa.stato.next(new ConfermaEvent());
   }
 
   modifica() {
-    this.entraStatoModifica();
+    this.automa.stato.next(new ModificaEvent());
   }
 
   rimuovi() {
-    this.entraStatoRimuovi();
+    this.automa.stato.next(new RimuoviEvent());
   }
 
   annulla() {
-    //this.automa.next(new AnnullaEvent());
+    this.automa.stato.next(new AnnullaEvent());
   }
 
   seleziona() {
-    this.entraStatoVisualizza();
+    this.automa.stato.next(new SelezionaEvent());
   }
 
   entraStatoRicerca() {
