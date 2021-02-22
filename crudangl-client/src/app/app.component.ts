@@ -1,5 +1,7 @@
+import { state } from '@angular/animations';
 import { Component } from '@angular/core';
 import { CrudAutoma, Ricerca } from './automa';
+import { Automabile } from './automabile';
 import { AddEvent, RicercaEvent } from './state';
 
 @Component({
@@ -7,7 +9,8 @@ import { AddEvent, RicercaEvent } from './state';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements Automabile {
+  automa: CrudAutoma;
 
   disableInputs: boolean = true;
   disableInputsCerca: boolean = false;
@@ -22,9 +25,12 @@ export class AppComponent {
   showForms: boolean;
   codice: string;
   descrizione: string;
-  cercaPerCodice:string;
+  cercaPerCodice: string;
 
   ricerca() {
+    this.entraStatoRicerca();
+  }
+  entraStatoRicerca() {
     this.showNuova = true;
     this.showModifica = false;
     this.showAnnulla = false;
@@ -38,30 +44,37 @@ export class AppComponent {
   }
 
   nuova() {
+    this.entraStatoAggiungi();
+  }
+  entraStatoAggiungi() {
     this.showNuova = false;
     this.showModifica = false;
     this.showAnnulla = true;
     this.showConferma = true;
     this.showRimuovi = false;
     this.showCerca = false;
-    this.showTable=false;
+    this.showTable = false;
     this.showForms = true;
     this.disableInputs = false;
     this.disableInputsCerca = true;
   }
 
   conferma() {
+    this.entraStatoVisualizza();
+  }
+  entraStatoVisualizza() {
     this.showNuova = true;
     this.showModifica = true;
     this.showAnnulla = false;
     this.showConferma = false;
     this.showRimuovi = true;
     this.showCerca = true;
-    this.showTable=true;
+    this.showTable = true;
     this.showForms = true;
     this.disableInputs = true;
     this.disableInputsCerca = false;
   }
+
 
   annulla() {
     this.showNuova = true;
@@ -74,7 +87,12 @@ export class AppComponent {
     this.showTable = true;
     this.showForms = false;
   }
+
+
   modifica() {
+    this.entraStatoModifica();
+  }
+  entraStatoModifica() {
     this.showNuova = false;
     this.showModifica = false;
     this.showAnnulla = true;
@@ -82,36 +100,34 @@ export class AppComponent {
     this.showRimuovi = false;
     this.showCerca = false;
     this.showForms = true;
-    this.showTable=false;
+    this.showTable = false;
     this.disableInputs = false;
     this.disableInputsCerca = true;
   }
 
+
   rimuovi() {
+    this.entraStatoRimuovi();
+  }
+  entraStatoRimuovi() {
     this.showNuova = false;
     this.showModifica = false;
     this.showAnnulla = true;
     this.showConferma = true;
     this.showRimuovi = false;
     this.showCerca = false;
-    this.showTable=false;
+    this.showTable = false;
     this.showForms = true;
     this.disableInputs = true;
     this.disableInputsCerca = true;
   }
 
-  cerca(){
-    this.showNuova = true;
-    this.showModifica = false;
-    this.showAnnulla = true;
-    this.showConferma = true;
-    this.showRimuovi = false;
-    this.showCerca = true;
-    this.showTable=true;
-    this.showForms = false;
-    this.disableInputs = true;
-    this.disableInputsCerca = false;
-    this.cercaPerCodice="";
+  seleziona() {
+    this.entraStatoVisualizza();
   }
+
+
+
+
 
 }

@@ -1,8 +1,15 @@
-import { RicercaEvent, SelezionaEvent, AddEvent, ConfermaEvent, AnnullaEvent, RimuoviEvent, ModificaEvent, State } from "./state";
+import { Automabile } from "./automabile";
+import { RicercaEvent, SelezionaEvent, AddEvent, ConfermaEvent, AnnullaEvent, RimuoviEvent, ModificaEvent, State, VisualizzaEvent } from "./State";
 
 export class CrudAutoma implements State {
 
     stato: State;
+    ui: Automabile;
+
+    constructor(ui: Automabile) {
+        this.ui = ui;
+        this.stato = new Ricerca();
+    }
 
     next(e: Event) {
         this.stato.next(e);
@@ -14,10 +21,13 @@ export class Ricerca implements State {
     next(e: Event, a: CrudAutoma) {
         if (e instanceof RicercaEvent) {
             a.stato = new Ricerca();
+            a.ui.entraStatoRicerca();
         } else if (e instanceof SelezionaEvent) {
             a.stato = new Visualizza();
+            a.ui.entraStatoVisualizza();
         } else if (e instanceof AddEvent) {
             a.stato = new Aggiungi();
+            a.ui.entraStatoAggiungi();
         }
     }
 }
@@ -26,10 +36,13 @@ export class Aggiungi implements State {
     next(e: Event, a: CrudAutoma) {
         if (e instanceof AnnullaEvent) {
             a.stato = new Ricerca();
+            a.ui.entraStatoRicerca();
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Visualizza();
+            a.ui.entraStatoVisualizza();
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Aggiungi();
+            a.ui.entraStatoAggiungi();
         }
     }
 }
@@ -38,14 +51,19 @@ export class Visualizza implements State {
     next(e: Event, a: CrudAutoma) {
         if (e instanceof AddEvent) {
             a.stato = new Aggiungi();
+            a.ui.entraStatoAggiungi();
         } else if (e instanceof ModificaEvent) {
             a.stato = new Modifica();
+            a.ui.entraStatoModifica();
         } else if (e instanceof RicercaEvent) {
             a.stato = new Ricerca();
+            a.ui.entraStatoRicerca();
         } else if (e instanceof RimuoviEvent) {
             a.stato = new Rimuovi();
+            a.ui.entraStatoRimuovi();
         } else if (e instanceof SelezionaEvent) {
             a.stato = new Visualizza();
+            a.ui.entraStatoVisualizza();
         }
     }
 }
@@ -54,8 +72,10 @@ export class Modifica implements State {
     next(e: Event, a: CrudAutoma) {
         if (e instanceof AnnullaEvent) {
             a.stato = new Visualizza();
+            a.ui.entraStatoVisualizza();
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Visualizza();
+            a.ui.entraStatoVisualizza();
         }
     }
 }
@@ -64,8 +84,11 @@ export class Rimuovi implements State {
     next(e: Event, a: CrudAutoma) {
         if (e instanceof AnnullaEvent) {
             a.stato = new Visualizza();
+            a.ui.entraStatoVisualizza();
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Ricerca();
+            a.ui.entraStatoRicerca();
         }
     }
 }
+
