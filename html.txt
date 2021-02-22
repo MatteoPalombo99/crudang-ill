@@ -1,0 +1,27 @@
+<button *ngIf="showNuova" (click)="nuova()">Nuova</button>
+<div *ngIf="showForms">
+<input type="text" placeholder="Codice" [disabled]="disableInputs">
+<input type="text" placeholder="Descrizione" [disabled]="disableInputs">
+<br>
+<br>
+<button *ngIf="showModifica" (click)="modifica()">Modifica</button>
+<button *ngIf="showConferma" (click)="conferma()">Conferma</button>
+<button *ngIf="showAnnulla" (click)="annulla()">Annulla</button>
+<button *ngIf="showRimuovi" (click)="rimuovi()">Rimuovi</button>
+</div>
+<br>
+<br>
+<div *ngIf="showCerca">
+<input type="text" placeholder="Cerca per codice" [disabled]="disableInputs">
+<button (click)="cerca()">Cerca</button>
+<br>
+<br>
+<table *ngIf="showTable">
+  <tr>
+    <th>Column0</th>
+    <th>Column1</th>
+    <th>Column2</th>
+    <th>Column3</th>
+  </tr>
+</table>
+</div>
