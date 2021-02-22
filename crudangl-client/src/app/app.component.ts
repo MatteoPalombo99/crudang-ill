@@ -1,4 +1,3 @@
-import { state } from '@angular/animations';
 import { Component } from '@angular/core';
 import { CrudAutoma, Ricerca } from './automa';
 import { Automabile } from './automabile';
@@ -10,11 +9,10 @@ import { AddEvent, RicercaEvent } from './state';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements Automabile {
-  automa: CrudAutoma;
+  automa: CrudAutoma = new CrudAutoma(this);
 
   disableInputs: boolean = true;
   disableInputsCerca: boolean = false;
-
   showNuova: boolean = true;
   showModifica: boolean;
   showAnnulla: boolean;
@@ -125,9 +123,5 @@ export class AppComponent implements Automabile {
   seleziona() {
     this.entraStatoVisualizza();
   }
-
-
-
-
-
 }
+

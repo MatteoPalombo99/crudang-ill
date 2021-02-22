@@ -9,6 +9,7 @@ export class CrudAutoma implements State {
     constructor(ui: Automabile) {
         this.ui = ui;
         this.stato = new Ricerca();
+        ui.entraStatoRicerca();
     }
 
     next(e: Event) {
