@@ -1,18 +1,22 @@
-<input type="text">
-<input type="text">
-<button (click)="nuova()">Nuova</button>
+<button *ngIf="showNuova" (click)="nuova()">Nuova</button>
+<div *ngIf="showForms">
+<input type="text" placeholder="Codice" [disabled]="disableInputs">
+<input type="text" placeholder="Descrizione" [disabled]="disableInputs">
 <br>
 <br>
-<button (click)="modifica()">Modifica</button>
-<button (click)="conferma()">Conferma</button>
-<button (click)="annulla()">Annulla</button>
-<button (click)="rimuovi()">Rimuovi</button>
+<button *ngIf="showModifica" (click)="modifica()">Modifica</button>
+<button *ngIf="showConferma" (click)="conferma()">Conferma</button>
+<button *ngIf="showAnnulla" (click)="annulla()">Annulla</button>
+<button *ngIf="showRimuovi" (click)="rimuovi()">Rimuovi</button>
+</div>
 <br>
 <br>
-<input type="text">
+<div *ngIf="showCerca">
+<input type="text" placeholder="Cerca per codice" [disabled]="disableInputs">
 <button (click)="cerca()">Cerca</button>
 <br>
-<table>
+<br>
+<table *ngIf="showTable">
   <tr>
     <th>Column0</th>
     <th>Column1</th>
@@ -20,3 +24,4 @@
     <th>Column3</th>
   </tr>
 </table>
+</div>
