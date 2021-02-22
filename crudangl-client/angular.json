@@ -120,5 +120,8 @@
       }
     }
   },
-  "defaultProject": "crudangl-client"
+  "defaultProject": "crudangl-client",
+  "cli": {
+    "analytics": false
+  }
 }
