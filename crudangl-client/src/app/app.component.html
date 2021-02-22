@@ -1,7 +1,7 @@
 <button *ngIf="showNuova" (click)="nuova()">Nuova</button>
 <div *ngIf="showForms">
-<input type="text" placeholder="Codice" [disabled]="disableInputs">
-<input type="text" placeholder="Descrizione" [disabled]="disableInputs">
+<input type="text" placeholder="Codice" [disabled]="disableInputs" [(ngModel)]="codice">
+<input type="text" placeholder="Descrizione" [disabled]="disableInputs" [(ngModel)]="descrizione">
 <br>
 <br>
 <button *ngIf="showModifica" (click)="modifica()">Modifica</button>
@@ -12,7 +12,7 @@
 <br>
 <br>
 <div *ngIf="showCerca">
-<input type="text" placeholder="Cerca per codice" [disabled]="disableInputs">
+<input type="text" placeholder="Cerca per codice" [disabled]="disableInputsCerca" [(ngModel)]="cercaPerCodice">
 <button (click)="cerca()">Cerca</button>
 <br>
 <br>
