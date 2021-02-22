@@ -1,4 +1,4 @@
-import { RicercaEvent, SelezionaEvent, AddEvent, ConfermaEvent, AnnullaEvent, RimuoviEvent, ModificaEvent, State, VisualizzaEvent } from "./State";
+import { RicercaEvent, SelezionaEvent, AddEvent, ConfermaEvent, AnnullaEvent, RimuoviEvent, ModificaEvent, State } from "./state";
 
 export class CrudAutoma implements State {
 
@@ -51,13 +51,21 @@ export class Visualizza implements State {
 }
 
 export class Modifica implements State {
-    next(e: Event, a: CrudAutoma) { }
+    next(e: Event, a: CrudAutoma) {
+        if (e instanceof AnnullaEvent) {
+            a.stato = new Visualizza();
+        } else if (e instanceof ConfermaEvent) {
+            a.stato = new Visualizza();
+        }
+    }
 }
 
 export class Rimuovi implements State {
-    next(e: Event, a: CrudAutoma) { }
-}
-
-export class Conferma implements State {
-    next(e: Event, a: CrudAutoma) { }
+    next(e: Event, a: CrudAutoma) {
+        if (e instanceof AnnullaEvent) {
+            a.stato = new Visualizza();
+        } else if (e instanceof ConfermaEvent) {
+            a.stato = new Ricerca();
+        }
+    }
 }
