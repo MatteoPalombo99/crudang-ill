@@ -28,6 +28,8 @@ export class Ricerca implements State {
         } else if (e instanceof AddEvent) {
             a.stato = new Aggiungi();
             a.ui.entraStatoAggiungi();
+        } else {
+            console.log("Evento inaspettato");
         }
     }
 }
@@ -43,6 +45,8 @@ export class Aggiungi implements State {
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Aggiungi();
             a.ui.entraStatoAggiungi();
+        } else {
+            console.log("Evento inaspettato");
         }
     }
 }
@@ -64,6 +68,8 @@ export class Visualizza implements State {
         } else if (e instanceof SelezionaEvent) {
             a.stato = new Visualizza();
             a.ui.entraStatoVisualizza();
+        } else {
+            console.log("Evento inaspettato");
         }
     }
 }
@@ -76,6 +82,8 @@ export class Modifica implements State {
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Visualizza();
             a.ui.entraStatoVisualizza();
+        } else {
+            console.log("Evento inaspettato");
         }
     }
 }
@@ -88,6 +96,8 @@ export class Rimuovi implements State {
         } else if (e instanceof ConfermaEvent) {
             a.stato = new Ricerca();
             a.ui.entraStatoRicerca();
+        } else {
+            console.log("Evento inaspettato");
         }
     }
 }
