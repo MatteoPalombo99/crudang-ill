@@ -1,5 +1,5 @@
 import { Automabile } from "./automabile";
-import { RicercaEvent, SelezionaEvent, AddEvent, ConfermaEvent, AnnullaEvent, RimuoviEvent, ModificaEvent, State, VisualizzaEvent } from "./State";
+import { RicercaEvent, SelezionaEvent, AddEvent, ConfermaEvent, AnnullaEvent, RimuoviEvent, ModificaEvent, State, Event} from "./state";
 
 export class CrudAutoma implements State {
 
@@ -12,9 +12,8 @@ export class CrudAutoma implements State {
         ui.entraStatoRicerca();
     }
 
-    next(e: Event) {
-        this.stato.next(e);
-
+    next(e: Event, a?: CrudAutoma) {
+        this.stato.next(e, a);
     }
 }
 

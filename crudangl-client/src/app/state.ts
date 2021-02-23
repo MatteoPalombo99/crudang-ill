@@ -18,10 +18,6 @@ export class AddEvent implements Event {
 
 }
 
-export class VisualizzaEvent implements Event {
-
-}
-
 export class ModificaEvent implements Event {
 
 }

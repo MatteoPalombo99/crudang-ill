@@ -24,34 +24,34 @@ export class AppComponent implements Automabile {
   codice: string;
   descrizione: string;
   cercaPerCodice: string;
+  showSeleziona: boolean = true;
 
-  ricerca() {
-    //Se decommentate viene generato un errore di transiplazione
-    //this.automa.stato.next(new RicercaEvent());
+  cerca() {
+    this.automa.next(new RicercaEvent, this.automa);
   }
 
   nuova() {
-    //this.automa.stato.next(new AddEvent());
+    this.automa.next(new AddEvent, this.automa);
   }
 
   conferma() {
-    //this.automa.stato.next(new ConfermaEvent());
+    this.automa.next(new ConfermaEvent, this.automa);
   }
 
   modifica() {
-    //this.automa.stato.next(new ModificaEvent());
+    this.automa.next(new ModificaEvent, this.automa);
   }
 
   rimuovi() {
-    //this.automa.stato.next(new RimuoviEvent());
+    this.automa.next(new RimuoviEvent, this.automa);
   }
 
   annulla() {
-    //this.automa.stato.next(new AnnullaEvent());
+    this.automa.next(new AnnullaEvent, this.automa);
   }
 
   seleziona() {
-    //this.automa.stato.next(new SelezionaEvent());
+    this.automa.next(new SelezionaEvent, this.automa);
   }
 
   entraStatoRicerca() {
@@ -65,6 +65,7 @@ export class AppComponent implements Automabile {
     this.showForms = false;
     this.disableInputs = true;
     this.disableInputsCerca = false;
+    this.showSeleziona = true;
   }
 
   entraStatoAggiungi() {
@@ -78,6 +79,7 @@ export class AppComponent implements Automabile {
     this.showForms = true;
     this.disableInputs = false;
     this.disableInputsCerca = true;
+    this.showSeleziona = false;
   }
 
   entraStatoVisualizza() {
@@ -91,6 +93,7 @@ export class AppComponent implements Automabile {
     this.showForms = true;
     this.disableInputs = true;
     this.disableInputsCerca = false;
+    this.showSeleziona = true;
   }
 
 
@@ -106,6 +109,7 @@ export class AppComponent implements Automabile {
     this.showTable = false;
     this.disableInputs = false;
     this.disableInputsCerca = true;
+    this.showSeleziona = false;
   }
 
   entraStatoRimuovi() {
@@ -119,6 +123,7 @@ export class AppComponent implements Automabile {
     this.showForms = true;
     this.disableInputs = true;
     this.disableInputsCerca = true;
+    this.showSeleziona = false;
   }
 }
 
